@@ -12,7 +12,7 @@ import prettytable as pt
 import sqlite3  
 import time
 
-token = "" #ISI TOKEN BOT
+token = "5689907358:AAGM9yXyvMRnKRHeUoBnMfNxyH3E7w4S1cE" #ISI TOKEN BOT
 
 conn = sqlite3.connect('database.db', check_same_thread=False)
 
@@ -173,7 +173,7 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("display", display))
     dp.add_handler(CommandHandler("register", register))
-    dp.add_handler(CommandHandler("polling", polling))
+    # dp.add_handler(CommandHandler("polling", polling))
     dp.add_handler(CommandHandler("help", help))
 
     dp.add_handler(MessageHandler(Filters.text, echo))

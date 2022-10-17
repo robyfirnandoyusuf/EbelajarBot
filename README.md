@@ -13,7 +13,7 @@ This project just for fun tho!
 </p>
 
 <p>
-    Tetapi seiring dengan perkembangan teknologi terdapat beberapa solusi untuk permasalahan tersebut. Salah satunya adalah menggunakan sistem bot telegram. Inti dari sistem ini sebenarnya sebagai pengingat mahasiswa apabila ada task baru ataupun memudahkan dalam monitoring task tanpa perlu login manual pada website berkali-kali. 
+    Tetapi seiring dengan perkembangan teknologi terdapat beberapa solusi untuk permasalahan tersebut. Salah satunya adalah menggunakan sistem bot telegram. Inti dari sistem ini sebenarnya sebagai pengingat mahasiswa kelas profesional apabila ada task baru ataupun memudahkan dalam monitoring task tanpa perlu login manual pada website berkali-kali hanya sekedar untuk mengecek ada atau tidaknya task baru. 
 </p>
 
 <p>

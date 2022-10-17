@@ -12,7 +12,7 @@ import prettytable as pt
 import sqlite3  
 import time
 
-token = "5689907358:AAGM9yXyvMRnKRHeUoBnMfNxyH3E7w4S1cE" #ISI TOKEN BOT
+token = "" #ISI TOKEN BOT
 
 conn = sqlite3.connect('database.db', check_same_thread=False)
 

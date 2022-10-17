@@ -173,7 +173,7 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("display", display))
     dp.add_handler(CommandHandler("register", register))
-    dp.add_handler(CommandHandler("polling", polling))
+    # dp.add_handler(CommandHandler("polling", polling))
     dp.add_handler(CommandHandler("help", help))
 
     dp.add_handler(MessageHandler(Filters.text, echo))

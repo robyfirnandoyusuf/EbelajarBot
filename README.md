@@ -17,7 +17,7 @@ This project just for fun tho!
 </p>
 
 <p>
-    Dengan dibuatnya sistem bot telegram Ebalajar ini bertujuan untuk menjawab persoalan
+    Dengan dibuatnya sistem bot telegram Ebelajar ini bertujuan untuk menjawab persoalan
     yang ada. Untuk menghasilkan sistem yang bekerja dengan effisien. Dengan
     prinsip kerja berbasis bot telegram memudahkan pengguna untuk
     pengingat dan memudahkan monitoring task perkuliahan secara realtime.

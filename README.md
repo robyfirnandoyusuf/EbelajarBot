@@ -22,6 +22,13 @@ This project just for fun tho!
     prinsip kerja berbasis bot telegram memudahkan pengguna untuk
     pengingat dan memudahkan monitoring assigments perkuliahan secara realtime.
 </p>
+
+### Installation
+```pip install -r requirements.txt```
+### Usage
+1. Create new telegram bot
+2. Put the bot token to `token` variable (bot.py Line 15)
+3. Run `python3 bot.py`
 </div>
 
 -- Built with :heart: greycat --

@@ -92,48 +92,54 @@ def polling():
         users = cur.fetchall()
         for user in users:
             username = user[1]
+            user_id = user[0]
 
-            arrEvents = []
             events = fetchEbelajar(username)
             
-            cur.execute(f"SELECT * FROM tasks")
-            tasks = cur.fetchall()
-            
             # pluck event id and insert
+            diff = []
+            cur.execute(f"SELECT * FROM tasks WHERE user_id = '{user_id}'")
+            eventsDb = cur.fetchall()
+            arrEventsDb = []
+            
+            for eventDb in eventsDb:
+                arrEventsDb.append(str(eventDb[2]))
+            
             for v in events:
                 event_id = str(v['id'])
-                arrEvents.append(event_id)
+                
+                if checkSubset(arrEventsDb, event_id) != True:
+                    diff.append(event_id)
                 checkTask = cur.execute(f"SELECT * FROM tasks WHERE event_id = '{event_id}'")
 
                 if (checkTask.fetchone() == None):
                     query = f"INSERT INTO tasks (_id,event_id,code,name,url,user_id,epoch_timeline,epoch_start,epoch_end) VALUES (null, '{v['id']}', '{v['course']['fullnamedisplay']}', '{v['name']}', '{v['url']}', '{user[0]}', '{v['timestart']}', '{v['course']['startdate']}', '{v['course']['enddate']}')"
                     cur.execute(query)
-            
-            arrEventsDb = []
-            for t in tasks:
-                arrEventsDb.append(t[2])
-            
-            diff = list(set(arrEvents).symmetric_difference(set(arrEventsDb)))
-            print(diff)
 
-            cur.execute(f"SELECT * FROM tasks WHERE event_id in ('{','.join(diff)}') ")
+            
+            print(','.join(diff))
+            cur.execute(f"SELECT * FROM tasks WHERE event_id in ({','.join(diff)}) ")
             tasks_rep = cur.fetchall()
             conn.commit()
-
-            if (len(tasks_rep) >= 1):
+            
+            if (len(diff) >= 1):
                 table = pt.PrettyTable(['Title', 'Code', 'Deadline', 'URL'])
                 for v in tasks_rep:
                     dt_obj = datetime.fromtimestamp(int(v[6]))
                     table.add_row([v[4], v[3], dt_obj, v[5]])
                 # update.message.reply_text(f'<b>NEW EVENT !!!!</b>\n<pre>{table}</pre>', parse_mode=ParseMode.HTML)
                 sendMsg(user[2], f'<b>NEW EVENT !!!!</b>\n<pre>{table}</pre>')
+                diff = []
     except BaseException as e:
-        sendMsg(user[2], 'Polling failed: ' + str(e) + ' . Please contact the Handsome Admin !')
+        sendMsg(user[2], 'Polling failed: ' + str(e) + ' . Please /register again your cookie and sesskey. If it still doesn\'t work contact the Handsome Admin !')
 
 def sendMsg(chat_id, text):
     url_req = "https://api.telegram.org/bot" + token + "/sendMessage" + "?chat_id=" + chat_id + "&text=" + text+"&parse_mode=html"
     res = requests.get(url_req)
     return res
+
+def checkSubset(arr, k):
+    return k in arr
 
 def register(update, ctx):
     username = update.message.chat.username
@@ -184,7 +190,7 @@ def main():
     while True:
         polling()
         print('polled !')
-        time.sleep(3) # Sleep for 3 seconds
+        time.sleep(3) # Sleep for 60 seconds
     updater.idle()
 
 
